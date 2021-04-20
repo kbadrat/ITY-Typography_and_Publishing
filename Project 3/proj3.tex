@@ -1,0 +1,302 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[left=2cm,top=3cm,text={17cm, 24cm}]{geometry}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+
+\usepackage{bm}
+\usepackage[IL2]{fontenc}
+
+\usepackage{hyperref}
+\urlstyle{same}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage[linesnumbered,ruled,czech,longend,noline]{algorithm2e}
+\usepackage{graphics}
+
+\begin{document}
+
+\catcode`-=12
+
+\begin{titlepage}
+\begin{center}
+
+\Huge \textsc{Vysoké učení technické v~Brně}\\
+\huge\textsc{Fakulta informačních technologií} \\
+\vspace{\stretch{0.382}}
+\LARGE Typografie a publikování\,--\,3. projekt \\
+\Huge {Tabulky a obrázky} \\
+\vspace{\stretch{0.618}}
+
+\end{center}
+
+{\Large\today \hfill
+Kovalets Vladyslav}
+
+\end{titlepage}
+
+\newpage
+
+\section{Úvodní strana}
+
+Název práce umístěte do zlatého řezu a nezapomeňte uvést dnešní datum a vaše jméno a příjmení.
+
+\section{Tabulky}
+
+Pro sázení tabulek můžeme použít buď prostředí\texttt{ tabbing }nebo prostředí\texttt{  tabular. }
+
+\subsection{Prostředí\texttt{ tabbing }}
+
+Při použití\texttt{ tabbing }vypadá tabulka následovně:
+
+\begin{tabbing}
+
+Vodní melouny\quad \=\textbf{Cena}\quad \= \textbf{Množství}\quad\kill
+\textbf{Ovoce}\> \textbf{Cena}\> \textbf{Množství}\\
+Jablka\> 25,90\> 3 kg\\
+Hrušky\> 27,40\> 2,5 kg\\
+Vodní melouny\> 35,-\> 1 kus\\
+  
+\end{tabbing}
+
+\noindent Toto prostředí se dá také použít pro sázení algoritmů, ovšem vhodnější je použít prostředí\texttt{ algorithm }nebo\texttt{ algorithm2e }(viz sekce \ref{algoritmy}). 
+
+\subsection{Prostředí\texttt{ tabular }}
+
+Další možností, jak vytvořit tabulku, je použít prostředí\texttt{ tabular }. Tabulky pak budou vypadat takto\footnote{Kdyby byl problem s\texttt{ cline, }zkuste se podívat  třeba sem: \url{http://www.abclinuxu.cz/tex/poradna/show/325037}.}:
+
+\bigskip
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|cc|}
+\hline 
+&\multicolumn{2}{c|}{\textbf{Cena}}\\ 
+\cline{2-3} 
+\textbf{Měna}&\textbf{nákup}& \textbf{prodej} \\ \hline
+EUR&\multicolumn{1}{l|}{25,227}&26,943\\
+GBP&\multicolumn{1}{l|}{29,368}&31,492\\
+USD&\multicolumn{1}{l|}{21,260}&22,661\\ 
+\hline
+
+\end{tabular}
+\caption{\label{tabulka 1}Tabulka kurzů k~dnešnímu dni} \label{tabulka 1}
+\end{table}
+
+\bigskip
+\begin{table}[h]
+\centering
+\begin{tabular}[p]{|c|c|}
+\hline
+$A$&${\neg}A$\\ 
+\hline
+\textbf{P}&N\\ \hline
+\textbf{O}&O\\ \hline
+\textbf{X}&X\\ \hline
+\textbf{N}&P\\ \hline
+\end{tabular}
+\begin{tabular}[p]{|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \wedge B$}}&\multicolumn{4}{c|}{$B$}\\ \cline{3-6}
+\multicolumn{2}{|c|}{}&\textbf{P}&\textbf{O}&\textbf{X}&\textbf{N}\\
+\hline
+\multirow{4}{*}{$A$}
+&\textbf{P}&P&O&X&N\\ \cline{2-6}
+&\textbf{O}&O&O&N&N\\ \cline{2-6}
+&\textbf{X}&X&N&X&N\\ \cline{2-6}
+&\textbf{N}&N&N&N&N\\ 
+\hline
+\end{tabular}
+\begin{tabular}[p]{|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \vee B$}}&\multicolumn{4}{c|}{$B$}\\ \cline{3-6}
+\multicolumn{2}{|c|}{}&\textbf{P}&\textbf{O}&\textbf{X}&\textbf{N}\\
+\hline
+\multirow{4}{*}{$A$}
+&\textbf{P}&P&P&P&P\\ \cline{2-6}
+&\textbf{O}&P&O&P&O\\ \cline{2-6}
+&\textbf{X}&P&P&X&X\\ \cline{2-6}
+&\textbf{N}&P&O&X&N\\ 
+\hline
+\end{tabular}
+\begin{tabular}[p]{|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$A \rightarrow B $}}&\multicolumn{4}{c|}{$B$}\\ \cline{3-6}
+\multicolumn{2}{|c|}{}&\textbf{P}&\textbf{O}&\textbf{X}&\textbf{N}\\
+\hline
+\multirow{4}{*}{$A$}
+&\textbf{P}&P&O&X&N\\ \cline{2-6}
+&\textbf{O}&P&O&P&O\\ \cline{2-6}
+&\textbf{X}&P&P&X&X\\ \cline{2-6}
+&\textbf{N}&P&P&P&P\\ 
+\hline
+\end{tabular}
+\caption{\label{tabulka 2}Protože Kleeneho trojhodnotová logika už je \uv{zastaralá}, uvádíme si zde příklad čtyřhodnotové logiky}
+\end{table}
+\bigskip
+\pagebreak
+
+\section{Algoritmy}
+\label{algoritmy}
+
+Pokud budeme chtít vysázet algoritmus, můžeme použít prostředí\texttt{ algorithm\footnote{Pro nápovědu, jak zacházet s~prostředím\texttt{ algorithm, }můžeme zkusit tuhle stránku: \\ \url{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithms/algorithms.pdf}.} }nebo\texttt{ algorithm2e\footnote{Pro\texttt{ algorithm2e }zase tuhle: \url{http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf}.}}.
+Příklad použití prostředí\texttt{ algorithm2e }viz Algoritmus \ref{algoritmus 1}. \\
+
+\IncMargin{1.5em}
+\begin{algorithm} \caption{\textsc{FastSLAM}}
+\label{algoritmus 1}
+
+\SetNlSty{}{}{:}
+\SetNlSkip{0.4em}
+\SetAlgoNlRelativeSize{-1}
+\SetInd{1em}{1em}
+\Indm
+\Indmm
+\KwIn{$(X_{t-1},u_t,z_t)$}
+\KwOut{$X_t$}
+\Indp
+\Indpp
+\BlankLine
+$\overline{X_t}=X_t=0$\\
+\For{$k=1\textrm{\emph{ to }}M$}
+{$x_t^{[k]}=\emph{sample\_motion\_model}(u_t,x_{t-1}^{[k]})$\\
+$\omega_t^{[k]}=\emph{measurement\_model}(z_t,x_t^{[k]},m_{t-1})$\\
+$m_t^{[k]}=updated\_occupancy\_grid(z_t,x_t^{[k]},m_{t-1}^{[k]})$\\
+$\overline{X_t}=\overline{X_t}+\langle x_x^{[m]},\omega_t^{[m]}\rangle $}
+\For{$k=1\textrm{\emph{to}}M$}
+{draw $i$ with probability $\approx\omega_t^{[i]}$\\
+add$\langle x_x^{[k]},m_t^{[k]}\rangle\textrm{to}X_t$\\}
+\Return{$X_t$}
+\end{algorithm}
+\DecMargin{1em}
+	
+\section{Obrázky}
+
+Do našich článků můžeme samozřejmě vkládat obrázky. Pokud je obrázkem fotografie, můžeme klidně použít bitmapový soubor. Pokud by to ale mělo být nějaké schéma nebo něco podobného, je dobrým zvykem takovýto obrázek vytvořit vektorově.
+
+\begin{figure}[h]
+
+\centering
+\scalebox{0.4}{\includegraphics{etiopan.eps}
+\reflectbox{\includegraphics{etiopan.eps}}}
+\caption{Malý Etiopánek a jeho bratříček} \label{obrazek 1}
+
+\end{figure}
+\smallskip
+\newpage
+Rozdíl mezi vektorovým\,\dots
+
+\begin{figure}[h]
+
+\scalebox{0.4}{\includegraphics{oniisan.eps}}
+\centering
+\caption{Vektorový obrázek} \label{obrazek 2}
+
+\end{figure}
+
+\bigskip
+\noindent\dots\,a bitmapovým obrázkem
+
+\begin{figure}[h]
+
+\scalebox{0.6}{\includegraphics{oniisan2.eps}}
+\centering
+\caption{Bitmapový obrázek} \label{obrazek 3}
+	
+\end{figure}
+
+\bigskip
+\noindent se projeví například při zvětšení.
+
+Odkazy (nejen ty) na obrázky \ref{obrazek 1}, \ref{obrazek 2} a \ref{obrazek 3}, na tabulky \ref{tabulka 1} a \ref{tabulka 2} a také na algoritmus \ref{algoritmus 1} jsou udělány pomocí křížových odkazů. Pak je ovšem potřeba zdrojový soubor přeložit dvakrát.
+
+Vektorové obrázky lze vytvořit i~přímo v~\LaTeX u, například pomocí prostředí\texttt{  picture. }
+	
+\pagebreak
+
+\begin{landscape}
+
+\begin{figure}[h]
+\centering
+\setlength{\unitlength}{1,1mm}
+
+\begin{picture}(170, 105)
+\put(67,127){\line(1,0){359}}
+\put(0, 0){\framebox(175, 100){}}
+
+\put(155, 90){\circle{14}}
+
+\qbezier(95, 7)(118, 11)(141, 15)
+\qbezier(141, 57)(118, 61)(95, 65)
+\qbezier(141, 57)(141, 36)(141, 15)
+\qbezier(95, 65)(95, 36)(95, 7)
+\qbezier(31, 55)(63, 60)(95, 65)
+\qbezier(31, 55)(31, 37)(31, 19)
+\qbezier(31, 19)(63, 15)(95, 11)
+\qbezier(95, 11)(118, 15)(141, 19)
+\qbezier(95, 7)(63, 12)(31, 17)
+\qbezier(31, 17)(31, 18)(31, 19)
+\qbezier(121, 45)(129, 44)(137, 43)
+\qbezier(121, 45)(121, 39)(121, 33)
+\qbezier(121, 33)(129, 33)(137, 33)
+\qbezier(137, 43)(137, 38)(137, 33)
+\qbezier(31, 55)(29, 55)(27, 55)
+\qbezier(27, 55)(28, 56)(29, 57)
+\qbezier(29, 57)(30, 58)(31, 59)
+\qbezier(31, 59)(63, 64)(95, 69)
+\qbezier(141, 57)(143, 57)(145, 57)
+\qbezier(141, 61)(143, 59)(145, 57)
+\qbezier(95, 69)(118, 65)(141, 61)
+\qbezier(31, 59)(31, 62)(31, 65)
+\qbezier(31, 65)(29, 65)(27, 65)
+\qbezier(27, 67)(27, 66)(27, 65)
+\qbezier(27, 67)(60, 75)(93, 83)
+\qbezier(93, 83)(119, 76)(145, 69)
+\qbezier(145, 69)(145, 68)(145, 67)
+\qbezier(145, 67)(143, 67)(141, 67)
+\qbezier(91, 61)(63, 57)(35, 53)
+\qbezier(35, 19)(35, 36)(35, 53)
+\qbezier(31, 19)(63, 15)(95, 11)
+\qbezier(91, 61)(91, 37)(91, 13)
+\qbezier(91, 13)(91, 14)(91, 15)
+\qbezier(91, 11)(91, 12)(91, 13)
+\qbezier(97, 61)(106, 60)(115, 59)
+\qbezier(97, 61)(106, 60)(115, 59)
+\qbezier(97, 27)(106, 28)(115, 29)
+\qbezier(115, 29)(115, 44)(115, 59)
+\qbezier(97, 61)(97, 44)(97, 27)
+\qbezier(35, 21)(42, 23)(49, 25)
+\qbezier(67, 23)(67, 37)(67, 51)
+\qbezier(53, 49)(60, 50)(67, 51)
+\qbezier(49, 51)(49, 38)(49, 25)
+\qbezier(49, 51)(42, 52)(35, 53)
+\qbezier(53, 25)(53, 37)(53, 49)
+\qbezier(53, 41)(60, 42)(67, 43)
+\qbezier(67, 33)(60, 32)(53, 31)
+\qbezier(65, 37)(65, 36)(65, 35)
+\qbezier(65, 35)(66, 35)(67, 35)
+\qbezier(67, 37)(66, 37)(65, 37)
+\qbezier(49, 51)(70, 54)(91, 57)
+\qbezier(97, 59)(106, 58)(115, 57)
+\qbezier(97, 57)(106, 56)(115, 55)
+\qbezier(97, 55)(106, 54)(115, 53)
+\qbezier(97, 53)(106, 52)(115, 51)
+\qbezier(97, 51)(106, 50)(115, 49)
+\qbezier(97, 49)(106, 48)(115, 47)
+\qbezier(97, 47)(106, 46)(115, 45)
+\qbezier(141, 67)(141, 64)(141, 61)
+\qbezier(31, 65)(62, 72)(93, 79)
+\qbezier(93, 79)(117, 73)(141, 67)
+\qbezier(53, 67)(53, 65)(53, 63)
+\qbezier(79, 73)(66, 70)(53, 67)
+\qbezier(79, 73)(79, 70)(79, 67)
+\qbezier(95, 79)(95, 74)(95, 69)
+\qbezier(93, 79)(94, 79)(95, 79)
+\qbezier(49, 25)(70, 23)(91, 21)
+
+\end{picture}
+\caption{Náčrt moderního domu 21. století.}
+\end{figure}
+\end{landscape}
+\end{document}
